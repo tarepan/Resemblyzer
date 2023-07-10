@@ -3,7 +3,7 @@ from resemblyzer.hparams import *
 from pathlib import Path
 from typing import Optional, Union
 import numpy as np
-import webrtcvad
+# import webrtcvad
 import librosa
 import struct
 
@@ -34,7 +34,8 @@ def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray], source_sr: Option
         
     # Apply the preprocessing: normalize volume and shorten long silences 
     wav = normalize_volume(wav, audio_norm_target_dBFS, increase_only=True)
-    wav = trim_long_silences(wav)
+    # NOTE: disabled for webrtcvad OFF
+    # wav = trim_long_silences(wav)
     
     return wav
 
