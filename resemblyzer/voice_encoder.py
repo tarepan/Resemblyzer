@@ -1,7 +1,6 @@
 from resemblyzer.hparams import *
 from resemblyzer import audio
 from pathlib import Path
-from typing import Union, List
 from torch import nn
 from time import perf_counter as timer
 import numpy as np
@@ -9,7 +8,7 @@ import torch
 
 
 class VoiceEncoder(nn.Module):
-    def __init__(self, device: Union[str, torch.device]=None, verbose=True, weights_fpath: Union[Path, str]=None):
+    def __init__(self, device: str | torch.device = None, verbose=True, weights_fpath: Path | str = None):
         """
         If None, defaults to cuda if it is available on your machine, otherwise the model will
         run on cpu. Outputs are always returned on the cpu, as numpy arrays.
@@ -163,7 +162,7 @@ class VoiceEncoder(nn.Module):
             return embed, partial_embeds, wav_slices
         return embed
 
-    def embed_speaker(self, wavs: List[np.ndarray], **kwargs):
+    def embed_speaker(self, wavs: list[np.ndarray], **kwargs):
         """
         Compute the embedding of a collection of wavs (presumably from the same speaker) by
         averaging their embedding and L2-normalizing it.

@@ -1,7 +1,6 @@
 from scipy.ndimage.morphology import binary_dilation
 from resemblyzer.hparams import *
 from pathlib import Path
-from typing import Optional, Union
 import numpy as np
 import webrtcvad
 import librosa
@@ -10,7 +9,7 @@ import struct
 int16_max = (2 ** 15) - 1
 
 
-def preprocess_wav(fpath_or_wav: Union[str, Path, np.ndarray], source_sr: Optional[int]=None):
+def preprocess_wav(fpath_or_wav: str | Path | np.ndarray, source_sr: int | None = None):
     """
     Applies preprocessing operations to a waveform either on disk or in memory such that  
     The waveform will be resampled to match the data hyperparameters.
